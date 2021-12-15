@@ -23,7 +23,8 @@ public class StartPoint {
         System.out.println("Please choose an option from below :)");
         System.out.println(" ------------------------------------");
         System.out.println("1 - View stock items");
-        System.out.println("2 - Exit our shop.");
+        System.out.println("2 - Add new item of stock");
+        System.out.println("3 - Exit our shop.");
         int input = Integer.parseInt(myScanner.nextLine());
 
         switch (input) {
@@ -32,6 +33,9 @@ public class StartPoint {
                 viewStock();
                 menuOptions();
                 break;
+            case 2:
+                addNewStock();
+                menuOptions();
         }
     }
 
@@ -50,6 +54,20 @@ public class StartPoint {
                     ", Manufacturer: " + i.productManufacturer + ", Product ID: " + i.productID + ", Number in Stock: " + i.productQuantity);
             System.out.println("---------------------------------------------------------------------------------------");
         }
+    }
+    private void addNewStock() {
+        System.out.println("Please enter the new products details.");
+        System.out.println("Stock ID:");
+        int productID = Integer.parseInt(new Scanner(System.in).nextLine());
+        System.out.println("Product Manufacturer:");
+        String productManufacturer = new Scanner(System.in).nextLine();
+        System.out.println("Product name:");
+        String name = new Scanner(System.in).nextLine();
+        System.out.println("Product price:");
+        double productPrice = Double.parseDouble(new Scanner(System.in).nextLine());
+        System.out.println("Product quantity:");
+        int productQuantity = Integer.parseInt(new Scanner(System.in).nextLine());
+        product.add(new Product(name, productID, productManufacturer, productPrice, productQuantity));
     }
 }
 
