@@ -13,6 +13,7 @@ public class Product {
         this.productManufacturer = productManufacturer;
         this.productPrice = productPrice;
         this.productQuantity = productQuantity;
+
     }
 
     public String getName (){
@@ -34,5 +35,7 @@ public class Product {
     public int getProductQuantity(){
         return productQuantity;
     }
+
+
 }
 

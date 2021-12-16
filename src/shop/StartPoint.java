@@ -13,7 +13,7 @@ public class StartPoint {
 
         StartPoint stock = new StartPoint();
         stock.menuOptions();
-       // stock.addStock();
+        // stock.addStock();
         //stock.viewStock();
     }
 
@@ -24,7 +24,9 @@ public class StartPoint {
         System.out.println(" ------------------------------------");
         System.out.println("1 - View stock items");
         System.out.println("2 - Add new item of stock");
-        System.out.println("3 - Exit our shop.");
+        System.out.println("3 - Remove an item of stock");
+        System.out.println("4 - Add to stock.");
+        System.out.println("5 - Exit our shop.");
         int input = Integer.parseInt(myScanner.nextLine());
 
         switch (input) {
@@ -36,8 +38,16 @@ public class StartPoint {
             case 2:
                 addNewStock();
                 menuOptions();
+                break;
+            case 3:
+                removeStock();
+                menuOptions();
+                break;
+            case 4:
+                amendStock();
+                menuOptions();
+            }
         }
-    }
 
     public void addStock() {
         product.add(new Product("Leather boxing gloves", 190, "Phoenix", 50, 26));
@@ -55,6 +65,7 @@ public class StartPoint {
             System.out.println("---------------------------------------------------------------------------------------");
         }
     }
+
     private void addNewStock() {
         System.out.println("Please enter the new products details.");
         System.out.println("Stock ID:");
@@ -69,5 +80,55 @@ public class StartPoint {
         int productQuantity = Integer.parseInt(new Scanner(System.in).nextLine());
         product.add(new Product(name, productID, productManufacturer, productPrice, productQuantity));
     }
+
+    private void removeStock() {
+        System.out.println("Please select an item of stock you want to remove:");
+        int count = 1;
+        for (Product s : product) {
+            System.out.println(count + " - " + s.name);
+            count++;
+            int choice = Integer.parseInt(new Scanner(System.in).nextLine());
+            product.remove(choice - 1);
+        }
+    }
+
+    private void amendStock() {
+        System.out.println("Please enter the ID of the product you want to edit");
+        int id = Integer.parseInt(new Scanner(System.in).nextLine());
+        Product amendStock = null;
+        for (Product x : product) {
+            if (x.productID == id) {
+                amendStock = x;
+                break;
+            }
+        }
+        System.out.println("Which field would you like to edit?");
+        System.out.println("1 - ID");
+        System.out.println("2 - Manufacturer");
+        System.out.println("3 - Name");
+        System.out.println("4 - Price");
+        System.out.println("5 - Stock");
+        int choice = Integer.parseInt(new Scanner(System.in).nextLine());
+        System.out.println("Enter the new details:");
+        if (amendStock != null) {
+            if (choice == 1) {
+                amendStock.productID = Integer.parseInt(new Scanner(System.in).nextLine());
+            } else if (choice == 2) {
+                amendStock.productManufacturer = new Scanner(System.in).nextLine();
+            } else if (choice == 3) {
+                amendStock.name = new Scanner(System.in).nextLine();
+            } else if (choice == 4) {
+                amendStock.productPrice = Double.parseDouble(new Scanner(System.in).nextLine());
+            } else if (choice == 5) {
+                amendStock.productQuantity = Integer.parseInt(new Scanner(System.in).nextLine());
+            } else {
+                System.out.println("Please enter a valid option.");
+                //amendStock();
+                //menuOptions();
+            }
+        }
+    }
 }
+
+
 
